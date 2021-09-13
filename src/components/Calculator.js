@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-// import { evaluate } from 'mathjs'
-
-import { evaluate } from '../math/math';
+import { evaluate } from 'mathjs'
 
 import { ContextTheme } from '../themes/Theme';
 import themes from '../themes/themes';
@@ -22,7 +20,7 @@ const StyledCalculator = styled.div`
 StyledCalculator.defaultProps = {
     theme: {
         calculator: {
-            backgroundColor: '#E5E4E1', 
+            backgroundColor: '#E5E4E1',
         },
     },
 };
@@ -76,15 +74,15 @@ function Calculator({ className }) {
     function handleDisplayInputChange(value) {
         setStringExpression(value);
     }
-        
+
 
     return (
         <StyledCalculator className={className}>
-            <Heading 
+            <Heading
                 selectedIndex={themeNames.indexOf(nameOfSelectedTheme)}
-                themeNames={themeNames} 
-                onThemeChange={handleThemeChange}/>
-            <Display value={stringExpression} onChange={handleDisplayInputChange}/>
+                themeNames={themeNames}
+                onThemeChange={handleThemeChange} />
+            <Display value={stringExpression} onChange={handleDisplayInputChange} />
             <Keyboard onButtonClick={handleKeyboardButtonClick} />
         </StyledCalculator>
     );
