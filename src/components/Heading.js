@@ -61,7 +61,7 @@ function Heading({selectedIndex, themeNames, onThemeChange, className}) {
         <StyledHeading className={className}>
             <span className="app_name">calc</span>
             <span className='theme'>Theme</span>
-            <div className='options'>{themeNames.map((el, i) => <span>{i}</span>)}</div>
+            <div className='options'>{themeNames.map((el, i) => <span key={i}>{i}</span>)}</div>
             <Switch className='switch' values={themeNames} selectedIndex={selectedIndex} onClick={onThemeChange} />
         </StyledHeading>
     );
