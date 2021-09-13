@@ -30,7 +30,7 @@ StyledCalculator.defaultProps = {
  */
 function Calculator({ className }) {
     const {setTheme, theme} = useContext(ContextTheme);
-    const [stringExpression, setStringExpression] = useState('');
+    const [input, setInput] = useState('');
 
 
     const themeNames = Object.keys(themes);
@@ -44,35 +44,35 @@ function Calculator({ className }) {
 
     function handleKeyboardButtonClick(value) {
         if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'].includes(value)) {
-            return setStringExpression(stringExpression + value);
+            return setInput(input + value);
         }
         if (['+', '-', '*', '/'].includes(value)) {
-            return setStringExpression(stringExpression + ' ' + value + ' ');
+            return setInput(input + ' ' + value + ' ');
         }
 
         if (value === 'Del') {
-            let newExpression = stringExpression.trimEnd();
+            let newExpression = input.trimEnd();
             newExpression = newExpression.substr(0, (newExpression.length - 1));
             newExpression = newExpression.trimEnd();
 
-            return setStringExpression(newExpression);
+            return setInput(newExpression);
         }
 
         if (value === 'Reset') {
-            return setStringExpression('');
+            return setInput('');
         }
 
         if (value === '=') {
             try {
-                setStringExpression(evaluate(stringExpression).toString());
+                setInput(evaluate(input).toString());
             } catch (e) {
-                setStringExpression('Syntax Error');
+                setInput('Syntax Error');
             }
         }
     }
 
-    function handleDisplayInputChange(value) {
-        setStringExpression(value);
+    function handleInputChange(value) {
+        setInput(value);
     }
 
 
@@ -82,7 +82,7 @@ function Calculator({ className }) {
                 selectedIndex={themeNames.indexOf(nameOfSelectedTheme)}
                 themeNames={themeNames}
                 onThemeChange={handleThemeChange} />
-            <Display value={stringExpression} onChange={handleDisplayInputChange} />
+            <Display value={input} onChange={handleInputChange} />
             <Keyboard onButtonClick={handleKeyboardButtonClick} />
         </StyledCalculator>
     );
